@@ -1,115 +1,35 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Logo from '@components/Logo';
+import DrumPad from '@components/DrumPad';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <header className="px-6 py-4 flex w-full justify-center bg-white border-b shadow-sm">
+       By
+       <a
+        href="https://ryanparag.com"
+        className="ml-2 font-bold text-blue-600 hover:underline focus:underline hover:text-blue-700 focus:text-blue-700 transition"
+       >
+       Ryan Parag
+       </a>
+      </header>
+      <main className="prose p-6 w-full max-w-xl flex flex-col items-center mx-auto pt-12">
+        <div className="flex justify-center">
+          <div className="inline-flex items-center mb-4 text-sm px-3 py-1 border border-slate-300 shadow-sm rounded-lg mx-1">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 96 960 960" width="48"><path d="M465.497 136Q556 136 620.5 199.5 685 263 685 354q0 52-22.5 98T599 530h-34v-50q29-23 44.5-56t15.5-70q0-66-47-112t-113-46q-66 0-113 46t-47 112q0 36.877 15.5 69.938Q336 457 365 480v72q-56-29-88-82t-32-116q0-91 64.5-154.5T465.497 136ZM427 976q-17 0-32-6.5T369 952L163 746l56-58q14-14 31.5-21.5T287 664l78 18V356q0-42 29-71t71-29q42 0 71 29t29 71v172h26q5 0 9 2t9 4l148 72q24 11 35.5 35.5T799 692l-36 218q-5 29-28 47.5T683 976H427Zm-8-60h281l43-249-183-91h-55V356q0-18-11-29t-29-11q-18 0-29 11t-11 29v399l-154-33-23 23 171 171Zm281 0H419h281Z"/></svg>
+            <span className="pl-1">Press Keys</span>
+          </div>
+          <div className="inline-flex items-center mb-4 text-sm px-3 py-1 border border-slate-300 shadow-sm rounded-lg mx-1">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 96 960 960" width="48"><path d="M560 925v-62q97-28 158.5-107.5T780 575q0-101-61-181T560 287v-62q124 28 202 125.5T840 575q0 127-78 224.5T560 925ZM120 696V456h160l200-200v640L280 696H120Zm420 48V407q55 17 87.5 64T660 576q0 57-33 104t-87 64ZM420 408 307 516H180v120h127l113 109V408Zm-94 168Z"/></svg>
+            <span className="pl-1">Sound On</span>
+          </div>
         </div>
+        <DrumPad/>
       </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        footer img {
-          margin-left: 0.5rem;
-        }
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-decoration: none;
-          color: inherit;
-        }
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
     </div>
   )
 }
