@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Donut Drums</title>
       </Head>
       <header className="px-6 py-4 flex w-full justify-center bg-white border-b shadow-sm">
        By
