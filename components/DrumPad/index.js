@@ -87,14 +87,18 @@ const DrumPad = () => {
   }
 
   return(
-    <div className="w-96 flex flex-col relative ring-4 ring-slate-300 rounded-lg bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200">
+    <div className="w-96 flex flex-col relative ring-4 ring-slate-300 rounded-lg bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 shadow-xl">
       <div className="w-full bg-slate-100 pt-5 p-3 rounded-md ring-2 ring-slate-200 relative z-10">
         <div className="grid grid-cols-4 w-full gap-2">
           <div className="w-full py-2 col-span-4 flex justify-center">
             <Sticker/>
           </div>
-          <div className="bg-black col-span-4 mb-2 py-3 px-6 rounded-lg">
-            <div className="w-full h-16 rounded-md bg-gradient-to-t from-cyan-900 via-cyan-800 to-cyan-900 text-xs text-cyan-400 p-3 font-mono relative after:content-['*'] after:absolute after:top-0 after:bottom-0 after:left-0 after:right-0 after:bg-gradient-to-t after:z-10 after:from-black after:via-transparent after:to-black after:opacity-10 border-2 border-white border-opacity-5">
+          <div className="bg-black col-span-4 mb-2 py-3 px-6 rounded-lg border-4 border-white border-opacity-20 ring-2 ring-slate-300">
+            <motion.div
+              className="w-full transition opacity-0 h-16 rounded-md bg-gradient-to-t from-cyan-900 via-cyan-800 to-cyan-900 text-xs text-cyan-400 p-3 font-mono relative after:content-['*'] after:absolute after:top-0 after:bottom-0 after:left-0 after:right-0 after:bg-gradient-to-t after:z-10 after:from-black after:via-transparent after:to-black after:opacity-10 border-2 border-white border-opacity-5"
+              animate={{ opacity: [0, 0.5, 0.3, 0.7, 0.6, 1] }}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
               <div
                 className="absolute top-0 bottom-0 right-0 left-0 bg-red-500 rounded-lg z-10"
                 style={{
@@ -129,11 +133,11 @@ const DrumPad = () => {
                   </>
                 )
               }
-            </div>
+            </motion.div>
           </div>
           {
             sounds.map((sound, i) => (
-              <ButtonPad key={i} src={sound.src} keyPress={sound.key} play={() => playSound(sound)} />
+              <ButtonPad key={i} src={sound.src} keyPress={sound.key} play={() => playSound(sound)} delay={i} />
             ))
           }
         </div>
