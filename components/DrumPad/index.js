@@ -2,81 +2,22 @@ import React, { useState } from 'react'
 import ButtonPad from "@components/ButtonPad"
 import {Howl, Howler} from 'howler';
 import { motion } from 'framer-motion';
-import { Bass, Kick, Snare, Hihat, Perc } from '@components/Icons';
 import Sticker from '@components/Sticker';
+import { HipHop, CasioPT30, RealDrums, TrapDrums } from '@components/Sounds';
+import Switch from '@components/Switch';
+
+const truncate = (str, length) => {
+  return (str.length > length) ? str.slice(0, length - 1) + '…' : str;
+}
 
 const DrumPad = () => {
 
   const [active, setActive] = useState(null)
-
-  const sounds = [
-    {
-      src: '21_Perc_1.mp3',
-      key: 'q',
-      name: 'Percussion',
-      icon: <Perc/>
-    }, {
-      src: '22_Perc_2.mp3',
-      key: 'w',
-      name: 'Percussion',
-      icon: <Perc/>
-    }, {
-      src: '23_Perc_3.mp3',
-      key: 'e',
-      name: 'Percussion',
-      icon: <Perc/>
-    }, {
-      src: '24_Perc_4.mp3',
-      key: 'r',
-      name: 'Percussion',
-      icon: <Perc/>
-    }, {
-      src: '12_Hihat_4.mp3',
-      key: 'a',
-      name: 'Hi-hat',
-      icon: <Hihat/>
-    }, {
-      src: '14_Hihat_6.mp3',
-      key: 's',
-      name: 'Hi-hat',
-      icon: <Hihat/>
-    }, {
-      src: '19_Snare_5.mp3',
-      key: 'd',
-      name: 'Snare',
-      icon: <Snare/>
-    }, {
-      src: '17_Snare_3.mp3',
-      key: 'f',
-      name: 'Snare',
-      icon: <Snare/>
-    }, {
-      src: '01_808_1.mp3',
-      key: 'z',
-      name: 'Bass',
-      icon: <Bass/>
-    }, {
-      src: '02_808_2.mp3',
-      key: 'x',
-      name: 'Bass',
-      icon: <Bass/>
-    }, {
-      src: '05_Kick_3.mp3',
-      key: 'c',
-      name: 'Kick',
-      icon: <Kick/>
-    }, {
-      src: '06_Kick_4.mp3',
-      key: 'v',
-      name: 'Kick',
-      icon: <Kick/>
-    }
-  ]
+  const [activeSounds, setActiveSounds] = useState(HipHop)
 
   const playSound = (source) => {
-
     const sound = new Howl({
-      src: [`/audio/hiphop/${source.src}`],
+      src: [`/audio/${source.src}`],
     });
     
     setActive(source)
@@ -85,6 +26,21 @@ const DrumPad = () => {
       setActive(null)
     }, 300)
   }
+
+  const click = (active) => {
+    const sound = new Howl({
+      src: [`/audio/click.mp3`],
+    });
+    sound.play()
+    setActiveSounds(active)
+  }
+
+  const sounds = [
+    { name: 'Beats', sounds: HipHop, keypress: '1' },
+    { name: 'Casio', sounds: CasioPT30, keypress: '2' },
+    { name: 'Real', sounds: RealDrums, keypress: '3' },
+    { name: 'Trap', sounds: TrapDrums, keypress: '4' }
+  ]
 
   return(
     <div className="w-96 flex flex-col relative ring-4 ring-slate-300 rounded-lg bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 shadow-xl">
@@ -118,7 +74,7 @@ const DrumPad = () => {
                     </div>
                     <div className="flex flex-col flex-1 pl-2">
                       <span>{active.name}</span>
-                      <span>Sample: {active.src}</span>
+                      <span className="truncate">Sample: {truncate(active.src, 26)}</span>
                     </div>
                   </div>
                 )
@@ -135,8 +91,21 @@ const DrumPad = () => {
               }
             </motion.div>
           </div>
+          <div className="col-span-4 px-2 pt-2 pb-0 bg-slate-600 rounded-md grid grid-cols-4 gap-2">
+            {
+              sounds.map((item,i) => (
+                <Switch
+                  item={item}
+                  key={i}
+                  keyPress={item.keypress}
+                  play={() => click(item.sounds)}
+                  active={activeSounds == item.sounds}
+                />
+              ))
+            }
+          </div>
           {
-            sounds.map((sound, i) => (
+            activeSounds.map((sound, i) => (
               <ButtonPad key={i} src={sound.src} keyPress={sound.key} play={() => playSound(sound)} delay={i} />
             ))
           }
