@@ -1,9 +1,14 @@
+import React, { useState } from 'react'
 import Head from 'next/head';
 import DrumPad from '@components/DrumPad';
 import Header from '@components/Header';
 import Instructions from '@components/Instructions';
+import { motion } from 'framer-motion';
+import Sidebar from '@components/Sidebar';
 
 const Layout = () => {
+
+  const [open, setOpen] = useState(false)
   return (
     <div>
       <Head>
@@ -23,11 +28,16 @@ const Layout = () => {
         <meta property="twitter:description" content="A simple, tappable drum kit - an homage to the great J Dilla"/>
         <meta property="twitter:image" content="/sm.png"/>
       </Head>
-      <Header/>
-      <main className="prose p-6 w-full max-w-xl flex flex-col items-center mx-auto pt-12">
-        <Instructions/>
-        <DrumPad/>
-      </main>
+      <Sidebar open={open}/>
+      <motion.div
+        className={`transition relative w-full ${open ? '-translate-x-[320px]' : 'translate-x-0'}`}
+      >
+        <Header openSidebar={setOpen} sidebarState={open}/>
+        <main className="prose p-6 w-full max-w-xl flex flex-col items-center mx-auto pt-12">
+          <Instructions/>
+          <DrumPad/>
+        </main>
+      </motion.div>
     </div>
   )
 }
