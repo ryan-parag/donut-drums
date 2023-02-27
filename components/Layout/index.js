@@ -6,7 +6,7 @@ import Instructions from '@components/Instructions';
 import { motion } from 'framer-motion';
 import Sidebar from '@components/Sidebar';
 
-const Layout = () => {
+const Layout = ({ children}) => {
 
   const [open, setOpen] = useState(false)
   return (
@@ -33,10 +33,7 @@ const Layout = () => {
         className={`transition relative w-full ${open ? '-translate-x-[320px]' : 'translate-x-0'}`}
       >
         <Header openSidebar={setOpen} sidebarState={open}/>
-        <main className="prose p-6 w-full max-w-xl flex flex-col items-center mx-auto pt-0">
-          <Instructions/>
-          <DrumPad/>
-        </main>
+        { children }
       </motion.div>
     </div>
   )

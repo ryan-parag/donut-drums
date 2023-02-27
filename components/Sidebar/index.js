@@ -23,7 +23,7 @@ const Sidebar = ({ open }) => {
   ]
 
   return(
-    <div className={`transition fixed top-0 bottom-0 right-0 w-[320px] bg-white border-l border-slate-200 z-30 ${open ? 'translate-x-0' : 'translate-x-[320px]'}`}>
+    <div className={`overflow-y-scroll transition fixed top-0 bottom-0 right-0 w-[320px] bg-white border-l border-slate-200 z-30 ${open ? 'translate-x-0' : 'translate-x-[320px]'}`}>
       <div className="py-6 px-4 bg-slate-100 text-base">
         <p className="mb-4">
           👋 Hey, I'm <a href="https://ryanparag.com" target="_blank" className="underline">Ryan</a>!
