@@ -9,12 +9,12 @@ const Header = ({ openSidebar, sidebarState }) => {
     >
       <div className="col flex justify-end">
         <motion.button
-          className="button opacity-0"
+          className={`button opacity-0 !rounded-full h-10 !w-10 !p-0 inline-flex items-center justify-center  ${sidebarState ? '-right-4' : 'right-0'}`}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.12, delay: 3 }}
           onClick={() => openSidebar(!sidebarState)}
         >
-          <svg className="mr-1" width="20" height="20" fill="none" viewBox="0 0 24 24">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
             {
               sidebarState ? (
                 <>
@@ -32,7 +32,6 @@ const Header = ({ openSidebar, sidebarState }) => {
               )
             }
           </svg>
-          { sidebarState ? 'Close' : 'Info'}
         </motion.button>
       </div>
     </motion.header>
