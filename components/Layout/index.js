@@ -33,7 +33,7 @@ const Layout = () => {
         className={`transition relative w-full ${open ? '-translate-x-[320px]' : 'translate-x-0'}`}
       >
         <Header openSidebar={setOpen} sidebarState={open}/>
-        <main className="prose p-6 w-full max-w-xl flex flex-col items-center mx-auto pt-12">
+        <main className="prose p-6 w-full max-w-xl flex flex-col items-center mx-auto pt-0">
           <Instructions/>
           <DrumPad/>
         </main>

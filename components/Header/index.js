@@ -3,22 +3,10 @@ import { motion } from "framer-motion";
 const Header = ({ openSidebar, sidebarState }) => {
   return(
     <motion.header
-      className="transition relative transform px-6 py-3 w-full grid grid-cols-5 bg-white border-b border-slate-200 -translate-y-12"
+      className="transition relative transform px-6 py-3 w-full flex justify-end bg-white -translate-y-12"
       animate={{ translateY: 0 }}
       transition={{ duration: 0.3, delay: 1 }}
     >
-      <div className="col"/>
-      <div className="col flex justify-center items-center col-span-3">
-        <span>
-          👋 Hey, I'm
-          <a
-          href="https://ryanparag.com"
-          className="ml-1 font-bold text-blue-600 hover:underline focus:underline hover:text-blue-700 focus:text-blue-700 transition"
-          >
-          Ryan Parag
-          </a>
-        </span>
-      </div>
       <div className="col flex justify-end">
         <motion.button
           className="button opacity-0"
